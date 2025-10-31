@@ -14,27 +14,27 @@ Usage:
     A password will be prompted for encryption/decryption.
 """
 
-
-from cryptography.fernet import Fernet
 import base64
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import os
 import argparse
 import getpass
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 
 class SecureEncryption:
     def __init__(self):
         self.salt = os.urandom(16)  # Generate a random salt
         
     def generate_key(self, password: str) -> bytes:  ## Generate a secure key using password and salt
-        kdf = PBKDF2HMAC(
+        pbkdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
             salt=self.salt,
             iterations=480000,
         )
-        key = base64.urlsafe_b64encode(kdf.derive(password.encode()))
+        key = base64.urlsafe_b64encode(pbkdf.derive(password.encode()))
         return key
 
     def encrypt_data(self, data: bytes, password: str) -> tuple: #Encrypt the provided data using Fernet (AES)
@@ -61,7 +61,7 @@ def main():
     # Create encryption instance
     encryptor = SecureEncryption()
     
-    # Get password securely
+    # Get the password
     password = getpass.getpass('Enter password: ')
     
     try:
