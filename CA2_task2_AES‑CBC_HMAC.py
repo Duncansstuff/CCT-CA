@@ -1,6 +1,6 @@
 
 # AES-CBC with HMAC
-# Confidentiality and Integrity, widely compatible
+# Confidentiality and Integrity
 # The code below shows confidentiality (AES CBC) and integrity (HMAC SHA 256). 
 # It Uses PKCS#7 padding, stores Initialization vector, cipher text and tag.
 
