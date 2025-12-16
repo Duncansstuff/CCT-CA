@@ -1,4 +1,4 @@
-# This example demonstrates AES-GCM operating in AEAD (Authenticated Encryption with Associated Data) mode.
+# This shows AES-GCM operating in AEAD (Authenticated Encryption with Associated Data) mode.
 # AEAD provides both confidentiality (encryption) and integrity/authentication in a single operation.
 
 from secrets import token_bytes
