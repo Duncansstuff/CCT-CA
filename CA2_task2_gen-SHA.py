@@ -1,9 +1,6 @@
-
-
 # Generate SHA-256 hash, good for file integrity checks 
-# Example usese: verifying a download or detecting accidental/unauthorized changes
 
-import hashlib
+import hashlib  #haslib module includes methods for all SHA alorigithms
 import os
 
 # Specify the file path to compute the hash for
@@ -11,11 +8,11 @@ file_path = 'CA2.docx'  # Change to your target file
 
 def compute_file_hash(file_path, algorithm='sha256'):
     # Compute the hexadecimal digest for a file using the given hashing algorithm.
-    # Args:
+    # Argument
     # file_path (str): Path to the file to be hashed. File is read in binary mode.
     # algorithm (str): Name of the hashing algorithm (default 'sha256').
 
-    # Returns:
+    # This Returns:
     # Hexadecimal string of the final digest.
 
     available = {a.lower() for a in hashlib.algorithms_available}
