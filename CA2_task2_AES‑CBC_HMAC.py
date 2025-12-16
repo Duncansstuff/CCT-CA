@@ -1,6 +1,6 @@
 
 # AES-CBC with HMAC
-# Confidentiality and Integrity
+# 
 # The code below shows confidentiality (AES CBC) and integrity (HMAC SHA 256). 
 # It Uses PKCS#7 padding, stores Initialization vector, cipher text and tag.
 
@@ -10,7 +10,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad    # PKCS#7 padding for block alignment
 import hmac, hashlib
 
-#### Encryption
+# Encryption
 # Key generation:
 # Use independent keys for encryption and MAC to avoid cross alorigm leakage.
 enc_key = token_bytes(32)     # AES-256 (32 bytes)
@@ -35,7 +35,7 @@ print(f"After PKCS#7 padding: {len(padded_plaintext)} bytes")
 ciphertext = cipher.encrypt(padded_plaintext)
 print(f"Ciphertext: {ciphertext.hex()[:64]}...")
 
-#### Integrity (HMAC)
+# Integrity (HMAC)
 # Compute the MAC over IV and ciphertext
 # Store the HMAC tag with the ciphertext
 print(f"\nComputing HMAC-SHA-256 authentication tag...")
@@ -47,7 +47,7 @@ print(f"Tag size: {len(tag)} bytes")
 bundle = iv + ciphertext + tag
 print(f"\nBundle created (IV|ciphertext|tag): {len(bundle)} bytes total")
 
-###### Decryption 
+# Decryption 
 # Parse bundle: first 16 bytes IV, last 32 bytes tag, remainder ciphertext.
 print(f"\nDecrypting from bundle...")
 iv2, ct2, tag2 = bundle[:16], bundle[16:-32], bundle[-32:]
